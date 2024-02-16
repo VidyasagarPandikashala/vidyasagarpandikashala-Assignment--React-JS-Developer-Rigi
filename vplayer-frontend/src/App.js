@@ -1,7 +1,10 @@
+import HomePage from "./ui/features/homepage/HomePage";
+
 function App() {
+  let videos = []; // if recieved from backend application otherwise uses stub assets data in th homepage
   return (
     <div>
-      <h1>Vplayer</h1>
+      <HomePage data={videos}></HomePage>
     </div>
   );
 }
