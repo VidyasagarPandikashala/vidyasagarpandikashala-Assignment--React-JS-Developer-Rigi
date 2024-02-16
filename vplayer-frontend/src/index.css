@@ -1,3 +1,11 @@
+:root {
+  --primary-accent-color: #ed5624;
+  --primary-text-color: #e0e0e0;
+  --background-color: #121212;
+  --overlay-shade-100: #333333;
+  --overlay-shade-200: #1e1e1e;
+}
+
 /** A CSS reset to remove all the default constraints**/
 *,
 *::before,
@@ -32,7 +40,7 @@ html:focus-within {
 body {
   min-height: 100vh;
   text-rendering: optimizeSpeed;
-
+  background-color: var(--background-color);
   line-height: 1.5;
 }
 
