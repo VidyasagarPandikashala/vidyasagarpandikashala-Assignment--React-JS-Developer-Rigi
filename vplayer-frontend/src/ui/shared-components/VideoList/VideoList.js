@@ -1,23 +1,26 @@
-import VideoPlayerThumbnail from "../VideoPlayerThumbnail/VideoPlayerThumbnail";
+import VideoPlayerThumbnail from "../videoPlayerThumbnail/VideoPlayerThumbnail";
 import AddToPlaylist from "../dialog-popup/AddToPlaylist";
 import styles from "./VideoList.module.css";
+
 function VideoList({ eachVideo, onClickHandler }) {
+  console.log(eachVideo);
   return (
-    <div>
-      <div className={styles.eachVideoContainer}>
+    <div className={styles.eachVideoListWrapper}>
+      <div
+        className={styles.eachVideoContainer}
+        onClick={() => onClickHandler(eachVideo.videoSrc)}
+      >
         <VideoPlayerThumbnail
           videoSrc={eachVideo.videoSrc}
-          onClickHandler={onClickHandler}
           thumbnailStyle={"thumbnailcontainer"}
         />
-        <div>
-          <div className={styles.movieNameContainer}>
-            <p className={styles.movieName}>{eachVideo.name}</p>
-          </div>
-          <div className={styles.addToPlaylistContainer}>
-            <AddToPlaylist />
-          </div>
+
+        <div className={styles.movieNameContainer}>
+          <p className={styles.movieName}>{eachVideo.name.toUpperCase()}</p>
         </div>
+      </div>
+      <div className={styles.addToPlaylistContainer}>
+        <AddToPlaylist videoId={eachVideo.id} />
       </div>
     </div>
   );

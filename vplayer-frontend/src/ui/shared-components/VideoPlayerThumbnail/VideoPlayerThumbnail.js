@@ -5,7 +5,7 @@ import { faPlay } from "@fortawesome/free-solid-svg-icons";
 function VideoPlayerThumbnail({ videoSrc, onClickHandler, thumbnailStyle }) {
   return (
     <div className={styles[thumbnailStyle]}>
-      <div onClick={() => onClickHandler(videoSrc)}>
+      <div>
         <FontAwesomeIcon className={styles.iconStyle} icon={faPlay} />
       </div>
     </div>

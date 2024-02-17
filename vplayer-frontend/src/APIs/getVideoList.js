@@ -1,7 +1,7 @@
 const listOFVideos = [
   {
     id: 1,
-    videoSrc: "./assets/apjkalam1.mp4",
+    videoSrc: "/assets/apjkalam1.mp4",
     name: "apjkalam1",
   },
 
