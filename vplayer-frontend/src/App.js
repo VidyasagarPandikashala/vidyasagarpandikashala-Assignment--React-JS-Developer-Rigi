@@ -1,5 +1,6 @@
 import HomePage from "./ui/features/homepage/HomePage";
 import Playlist from "./ui/features/playList/Playlist";
+
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import PlaylistVideoList from "./ui/features/playlist-videoslist/PlaylistVideoList";
 import Root from "./Root";
@@ -17,11 +18,10 @@ const router = createBrowserRouter([
 ]);
 
 function App() {
-  let videos = [];
   return (
     <RouterProvider router={router}>
       <div>
-        <HomePage data={videos}></HomePage>
+        <HomePage></HomePage>
       </div>
     </RouterProvider>
   );
