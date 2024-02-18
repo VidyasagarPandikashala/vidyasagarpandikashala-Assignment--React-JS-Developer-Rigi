@@ -25,7 +25,8 @@ dl,
 dd {
   font-family: "Inter", sans-serif;
   font-optical-sizing: auto;
-  margin-block-end: 0;
+  margin: 0;
+  padding: 0;
 }
 
 ul[role="list"],
@@ -38,7 +39,6 @@ html:focus-within {
 }
 
 body {
-  min-height: 100vh;
   text-rendering: optimizeSpeed;
   background-color: var(--background-color);
   line-height: 1.5;
