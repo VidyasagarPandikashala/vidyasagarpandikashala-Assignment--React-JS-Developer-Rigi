@@ -1,5 +1,4 @@
 import { createSlice } from "@reduxjs/toolkit";
-
 import {
   generatePlaylistId,
   generateVideoId,
@@ -100,11 +99,17 @@ const getSelectorForVideosUnderPlaylist = (playlistIds) => {
           state.database.playlist_videos[eachPlaylistInfo.playListId];
 
         if (videoIdsUnderPlaylistId && videoIdsUnderPlaylistId.size) {
-          currPlaylistWithVideo.videos = state.database.videos.filter(
-            (eachVideo) => {
-              return videoIdsUnderPlaylistId.has(eachVideo.id);
-            }
-          );
+          videoIdsUnderPlaylistId.forEach((eachVideoIdUnderPlaylistId) => {
+            // find the videodata for this id
+
+            const videoDataForPlaylistId = state.database.videos.find(
+              (videInfo) => videInfo.id === eachVideoIdUnderPlaylistId
+            );
+
+            // push it into the video array in the
+
+            currPlaylistWithVideo.videos.push(videoDataForPlaylistId);
+          });
         }
 
         acc.push(currPlaylistWithVideo);
