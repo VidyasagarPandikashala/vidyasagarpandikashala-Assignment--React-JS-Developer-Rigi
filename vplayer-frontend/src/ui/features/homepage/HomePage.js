@@ -1,8 +1,6 @@
 import React, { useState, useEffect } from "react";
 
 import VideoPlayer from "../../shared-components/videoPlayer/VideoPlayer.js";
-import Logo from "../../shared-components/logo/Logo.js";
-import NavBar from "../../shared-components/navbar/NavBar.js";
 
 import styles from "./HomePage.module.css";
 import { useSelector } from "react-redux";
