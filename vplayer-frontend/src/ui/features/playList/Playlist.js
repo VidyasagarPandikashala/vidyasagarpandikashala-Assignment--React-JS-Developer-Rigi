@@ -11,6 +11,7 @@ function Playlist() {
   console.log(selectPlayList);
   return (
     <>
+      <CreatePlayList />
       <div className={styles.noPlaylistBackground}>
         {selectPlayList.length === 0 ? (
           <div className={styles.noPlaylist}> No playlist available</div>
@@ -29,7 +30,6 @@ function Playlist() {
           })
         )}
       </div>
-      <CreatePlayList className={styles.createPlaylist} />
     </>
   );
 }

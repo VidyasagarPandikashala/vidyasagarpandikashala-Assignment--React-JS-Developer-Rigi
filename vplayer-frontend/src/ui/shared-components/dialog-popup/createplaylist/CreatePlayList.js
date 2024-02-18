@@ -7,10 +7,15 @@ import DialogContent from "@mui/material/DialogContent";
 import DialogTitle from "@mui/material/DialogTitle";
 import { useDispatch } from "react-redux";
 import { DATABASE_ACTIONS } from "../../../../redux/applicationslice/appSlice";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 const CreatePlayList = () => {
   const [open, setOpen] = useState(false);
+  const [isScrolling, setIsScrolling] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
+  const [hideButton, setHideButton] = useState(false);
+  let timeoutId = null;
+
   const dispatch = useDispatch();
 
   const handleClickOpen = () => {
@@ -21,6 +26,26 @@ const CreatePlayList = () => {
     setOpen(false);
   };
 
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolling(true);
+      setIsScrolled(window.scrollY > 0);
+      setHideButton(false);
+      clearTimeout(timeoutId);
+      timeoutId = setTimeout(() => {
+        setIsScrolling(false);
+        if (!isScrolled) {
+          setHideButton(true);
+        }
+      }, 1000);
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
+
   const handleSubmit = (event) => {
     event.preventDefault();
     const formData = new FormData(event.currentTarget);
@@ -30,7 +55,13 @@ const CreatePlayList = () => {
     handleClose();
   };
   return (
-    <>
+    <div
+      style={{
+        visibility: hideButton ? "hidden" : "visible",
+        position: "sticky",
+        top: 0,
+      }}
+    >
       <Button
         variant="outlined"
         onClick={handleClickOpen}
@@ -42,8 +73,9 @@ const CreatePlayList = () => {
           height: "auto",
           fontSize: "16px",
           border: "none",
-          marginTop: "8rem",
+          margin: "2rem",
           translate: "80vw",
+          position: "sticky",
         }}
       >
         Create Playlist
@@ -75,7 +107,7 @@ const CreatePlayList = () => {
           <Button type="submit">Create Playlist</Button>
         </DialogActions>
       </Dialog>
-    </>
+    </div>
   );
 };
 export default CreatePlayList;
