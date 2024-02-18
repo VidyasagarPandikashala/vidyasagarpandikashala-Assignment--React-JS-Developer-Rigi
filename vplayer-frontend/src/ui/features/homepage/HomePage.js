@@ -1,23 +1,19 @@
 import React, { useState, useEffect } from "react";
-import getVideoList from "../../../APIs/getVideoList";
-import VideoPlayer from "../../shared-components/VideoPlayer/VideoPlayer.js";
-import Logo from "../../shared-components/Logo/Logo.js";
-import NavBar from "../../shared-components/NavBar/NavBar.js";
-import VideoList from "../../shared-components/VideoList/VideoList.js";
-import styles from "./HomePage.module.css";
 
-function HomePage(props) {
-  const size = 0;
-  const [videoList, setVideoList] = useState([]);
+import VideoPlayer from "../../shared-components/videoPlayer/VideoPlayer.js";
+import Logo from "../../shared-components/logo/Logo.js";
+import NavBar from "../../shared-components/navbar/NavBar.js";
+
+import styles from "./HomePage.module.css";
+import { useSelector } from "react-redux";
+import { SELECT_TABLE } from "../../../redux/applicationslice/appSlice.js";
+import VideoListItem from "../../shared-components/videoListItem/VideoListItem.js";
+
+function HomePage() {
   const [videoSrc, setVideoSrc] = useState("");
 
-  useEffect(() => {
-    if (size !== 0) {
-      setVideoList(props.data);
-    } else {
-      setVideoList(getVideoList);
-    }
-  }, [size, props.data]);
+  const selectVideos = useSelector(SELECT_TABLE.selectVideos);
+  console.log(selectVideos);
 
   function handleOnclick(src) {
     setVideoSrc(src);
@@ -26,16 +22,16 @@ function HomePage(props) {
 
   return (
     <div>
-      <div className={styles.homePageHeader}>
-        <Logo />
-        <NavBar />{" "}
-      </div>
       <div className={styles.videoListContainer}>
         <VideoPlayer src={videoSrc} />
+
         <div className={styles.outerWrapperVideoListContainer}>
-          {videoList.map((eachVideo) => {
+          <div className={styles.listHeading}>
+            <h1>All Videos</h1>
+          </div>
+          {selectVideos.map((eachVideo) => {
             return (
-              <VideoList
+              <VideoListItem
                 key={eachVideo.id}
                 eachVideo={eachVideo}
                 onClickHandler={handleOnclick}
