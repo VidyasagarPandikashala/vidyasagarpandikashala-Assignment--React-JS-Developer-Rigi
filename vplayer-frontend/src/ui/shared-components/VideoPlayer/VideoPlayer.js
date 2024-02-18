@@ -1,4 +1,4 @@
-import VideoPlayerThumbnail from "../VideoPlayerThumbnail/VideoPlayerThumbnail";
+import VideoPlayerThumbnail from "../videoPlayerThumbnail/VideoPlayerThumbnail";
 import styles from "./VideoPlayer.module.css";
 
 function VideoPlayer({ src }) {
@@ -9,6 +9,7 @@ function VideoPlayer({ src }) {
       ) : (
         <video
           className={styles.videoPlayer}
+          autoPlay
           controls
           width="100%"
           src={src}
